@@ -1,0 +1,12 @@
+.input {
+  border: 1px solid #abd;
+}
+
+.delete {
+  margin-left: 20px;
+  color: #ac0c;
+}
+
+.addItem {
+  margin-left: 20px;
+}
