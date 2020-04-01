@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 17px 0 15px 0;
+  padding: 0 10px;
+}
+
+.row {
+  width: 100%;
+  max-width: 1260px;
+  min-width: 755px;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 60px;
+  line-height: 60px;
+}
+
+.logo {
+  line-height: 60px;
+  margin-left: 20px;
+  width: 258px;
+  float: left;
+  line-height: 60px;
+  height: 60px;
+}
+
+.header {
+  height: 39px;
+  font-size: 40px;
+}
+
+.base-green {
+  color: #96b97d;
+}
+
+.search {
+  float: right;
+  min-width: 175px;
+  width: 37%;
+  height: 100%;
+}
+
+.input {
+  vertical-align: middle;
+  font-size: 15px;
+  text-indent: 15px;
+  width: 94%;
+  height: 34px;
+  border: 1px solid #8e8e8e;
+  border-radius: 3px;
+  outline: 5px solid #eeefed;
+}
