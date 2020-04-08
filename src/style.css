@@ -41,3 +41,30 @@
     opacity: 0;
   }
 }
+
+/* 入场之前 */
+.test-enter {
+  opacity: 0;
+}
+/* 正在入场 */
+.test-enter-active {
+  opacity: 1;
+  transition: opacity 2000ms;
+}
+/* 入场结束 */
+.test-enter-done {
+  opacity: 1;
+}
+/* 准备退出 */
+.test-exit {
+  opacity: 1;
+}
+/* 正在退出 */
+.test-exit-active {
+  opacity: 0;
+  transition: opacity 2000ms;
+}
+/* 退出结束 */
+.test-exit-done {
+  opacity: 0;
+}

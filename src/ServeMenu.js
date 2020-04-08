@@ -1,6 +1,8 @@
 import React,{Component, Fragment} from 'react';
 import ServeMenuItem from './ServeMenuItem'
 import Animation from './Animation';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+
 
 import './style.css'
 import axios from 'axios';
@@ -69,18 +71,28 @@ class ServeMenu extends Component {
           <button onClick={this.add} className="addItem">添加</button>
           
           <ul ref={(ul) => this.ul = ul}>
-            {
-              this.state.list.map((item, index) => {
-                return (
-                  <ServeMenuItem
-                    deleteItem={this.deleteItem.bind(this,index)} 
-                    key={item+index}
-                    item={item} index={index}
-                    avaName={this.state.avaName}
-                  />
-                )
-              })
-            }
+            <TransitionGroup>
+              {
+                this.state.list.map((item, index) => {
+                  return (
+                    <CSSTransition
+                      timeout={2000}
+                      classNames="test"
+                      unmountOnExit
+                      key={index+item}
+                      appear={true}
+                    >
+                      <ServeMenuItem
+                        deleteItem={this.deleteItem.bind(this,index)} 
+                        key={item+index}
+                        item={item} index={index}
+                        avaName={this.state.avaName}
+                      />
+                    </CSSTransition>
+                  )
+                })
+              }
+            </TransitionGroup>
           </ul>
 
           <Animation />

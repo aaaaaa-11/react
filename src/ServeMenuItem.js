@@ -10,12 +10,12 @@ class ServeMenuItem extends Component {
   }
   
   shouldComponentUpdate (nextProps, nextState) {
-    // if (nextProps.item !== this.props.item) {
-    //   return true
-    // } else {
-    //   return false
-    // }
-    return nextProps.item !== this.props.item // 根据 子组件 是否 发生变化 执行接下来的 钩子函数
+    if (nextProps.item !== this.props.item) {
+      return true
+    } else {
+      return false
+    }
+    // return nextProps.item !== this.props.item // 根据 子组件 是否 发生变化 执行接下来的 钩子函数
   }
 
   // 组件第一次存在于DOM中，函数不会被执行
