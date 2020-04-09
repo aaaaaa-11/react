@@ -1,0 +1,32 @@
+## JSX
+JavaScript的语法扩展
+
+JSX中中的JavaScript表达式需要放到一个{}中
+
+JSX可以防止注入攻击，因为JSX的内容在渲染之前都被转换为字符串了
+
+Babel会把JSX转译为一个React.createElement()函数调用
+React.createElement()可以创建一个虚拟DOM元素，包括元素的标签、class、内容、子元素等
+
+## 元素渲染
+ReactDOM会更新DOM来与React元素保持一致
+React元素开销小
+
+使用React创建的元素会挂载到一个根DOM节点上，挂载在该节点上的所有内容都会由ReactDOM管理
+使用ReactDOM.render()可以将React元素渲染到根DOM节点中
+
+React元素是不可变对象，创建后不可更改其子元素或者属性
+目前更新UI的唯一方式是创建一个新的元素，传入ReactDOM.render()
+
+ReactDOM会将元素前后状态进行对比，然后只更新变化的部分
+
+## 组件
+两种方式创建组件：
+- 函数组件
+- class组件
+
+JSX规范：组件名称要以大写字母开头，以小写字母的组件被视为原生DOM标签
+
+### 函数组件
+只接收props对象，并返回一个React元素
+

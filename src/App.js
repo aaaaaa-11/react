@@ -1,12 +1,12 @@
 import React from 'react';
-import Game from './components/Game/index'
-import './css/index.css'
+import HelloWorld from './components/HelloWorld'
+import './css/base.css'
 
 function App() {
   
   return (
     <div>
-      <Game />
+      <HelloWorld user={['Sara', 'Jerry', 'Ben']} />
     </div>
   );
 }
