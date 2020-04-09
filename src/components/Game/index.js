@@ -27,30 +27,41 @@ class Item extends React.Component {
   }
 }
 
+function Tip (props) {
+  return <div>
+    <p className="win">恭喜玩家<span className="bold">{props.winner}</span>获胜</p>
+  </div>
+}
+
+let tip = null, next
+
 export default class Game extends React.Component {
   constructor () {
     super ()
     this.state = {
-      square: [
+      square: [ // 棋盘，默认每格为空
         [null, null, null],
         [null, null, null],
         [null, null, null]
       ],
-      player: 'X',
-      endGame: 'false',
-      winner: null,
-      count: 0
+      player: 'X', // 默认 先下'X'
+      endGame: 'false', // 标记 结束游戏
+      winner: null, // 获胜者
+      count: 0, // 记录下了几个棋子（下完结束）
+      history: new Array(9).fill(null)
     }
     this.clickItem = this.clickItem.bind(this)
+  }
+
+  componentWillMount () {
+    next = <h3 className="title">Next player: {this.state.player}</h3>
   }
 
   render () {
     return (
       <div>
         <div className="container">
-
-          <h3 className="title">Next player: {this.state.player}</h3>
-          
+          {next}
           {
             this.state.square.map((item, index) => {
               return (
@@ -66,10 +77,9 @@ export default class Game extends React.Component {
               )
             })
           }
-
         </div>
 
-        <p className="win">恭喜玩家<span className="bold">{this.state.winner}</span>获胜</p>
+        {tip}
 
       </div>
     )
@@ -88,34 +98,38 @@ export default class Game extends React.Component {
       player: player,
       count: count + 1
     }, () => {
-      if (count === 8) {
-        this.setState({
-          endGame: 'true',
-          winner: 'o'
-        })
-      }
+      
       player = player === 'X' ? 'O' : 'X'
-      if (square[index][0] === square[index][1] && square[index][1] === square[index][2]) {
+      if (this.checkWin(square, index, innerIdx)) {
         this.setState({
           endGame: 'true',
           winner: player
         })
-      } else if (square[0][innerIdx] === square[1][innerIdx] && square[1][innerIdx] === square[2][innerIdx]) {
+        tip = <Tip winner={player} />
+        next = <h3 className="title">Game Over!</h3>
+      } else if (count === 8) { // 如果下完棋子，没有人获胜，结束游戏
         this.setState({
           endGame: 'true',
-          winner: player
         })
-      } else if (square[0][0] === square[1][1] && square[1][1] === square[2][2] && square[2][2] !== null) {
-        this.setState({
-          endGame: 'true',
-          winner: player
-        })
-      } else if (square[0][2] === square[1][1] && square[1][1] === square[2][0] && square[2][0] !== null) {
-        this.setState({
-          endGame: 'true',
-          winner: player
-        })
+        next = <h3 className="title">Game Over!</h3>
       }
+      
     })
+  }
+
+  // 检查游戏 是否结束
+  //    如果 某一行 || 某一列 || 对角线 上的棋子完全一样，则获胜-返回true，否则返回false
+  checkWin (square, index, innerIdx) {
+    if (square[index][0] === square[index][1] && square[index][1] === square[index][2]) {
+      return true
+    } else if (square[0][innerIdx] === square[1][innerIdx] && square[1][innerIdx] === square[2][innerIdx]) {
+      return true
+    } else if (square[0][0] === square[1][1] && square[1][1] === square[2][2] && square[2][2] !== null) {
+      return true
+    } else if (square[0][2] === square[1][1] && square[1][1] === square[2][0] && square[2][0] !== null) {
+      return true
+    } else {
+      return false
+    }
   }
 }
