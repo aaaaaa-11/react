@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { formatDetailDate } from '../js/formatDate'
+import '../../css/comment.css'
 
-export default class Comment extends Component {
+export default class CmtItem extends Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -11,12 +11,12 @@ export default class Comment extends Component {
     return (
       <div className="cmts-item">
         <div className="cmts-item-l">
-          <img className="cmts-item_avat" src={ this.props.user.avatar || require("../img/logo192.png")} alt="avatar" />
+          <img className="cmts-item_avat" src={ this.props.user.avatar || require("../../img/logo192.png")} alt="avatar" />
           <p className="cmts-item_name">{ this.props.user }</p>
         </div>
         <div className="cmts-item-r">
-          <p className="cmts-item_time">{formatDetailDate(new Date())}</p>
-          <p className="cmts-item_p">{ this.props.comment }</p>
+          <p className="cmts-item_time">{item.cmtTime}</p>
+          <p className="cmts-item_p">{ item.comment }</p>
         </div>
       </div>
     )

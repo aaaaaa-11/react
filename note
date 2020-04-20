@@ -33,6 +33,49 @@ props是只读属性，不会更改入参的函数被称为“纯函数”
 
 ## state
 state是私有的，完全受控于当前组件
+注意：
+- 不要直接修state，应该使用setState
+- state的更新可能是异步的，setState可以接收回调函数作为参数，回调函数的参数可以是上一个state和此次props
+- setState把更新结果合并到state中，替换修改的状态，保留未修改的状态
 
 ## 生命周期函数
-componentDid
+render 组件挂载、更新之前
+componentDidMount 组件挂载完成
+componentWillUnmount 组件从DOM中移除之前
+
+## 数据向下流动
+React组件是单数据流
+
+## 事件处理
+事件命名规则：小驼峰
+React中阻止默认行为：e.preventDefault()
+不需要使用addEventListener，而是在元素初始渲染时添加监听器，并在组件初始化时声明事件处理函数
+注意事件处理函数需要绑定this，可以使用bind()，也可以使用class fields语法，
+不推荐在绑定事件处理函数时使用回调函数，为了避免将该回调函数作为props传入子组件时会进行额外的渲染
+
+## 事件传参
+传参：
+1. onClick={this.foo.bind(this, 参数)}
+2. onClick={(e) => this.foo(参数, e)} // 箭头函数传参时，如果需要事件对象e，需要作为第二个参数传递
+接收：
+foo (参数, e) {
+  ……
+}
+
+## 条件渲染
+1. 用if语句
+通过变量值控制渲染哪个组件
+在render中进行判断并渲染
+
+2. &&
+条件 && 需要渲染的组件
+
+3. 三目运算符
+条件 ? 组件1 : 组件2
+
+4. 阻止组件渲染
+对于无状态组件：return null
+对于有状态组件：render () { return null }
+
+通过return null来阻止组件渲染，组件的生命周期依然完整
+

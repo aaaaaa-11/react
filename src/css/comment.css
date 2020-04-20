@@ -30,8 +30,16 @@
   font-size: 20px;
 }
 
+.hight-light {
+  border: 1px solid #ef165e;
+}
+
+.border-grey {
+  border: 1px solid #aaa;
+}
+
 .cmts-content {
-  min-height: 20px;
+  min-height: 300px;
 }
 
 .cmts-item {
@@ -69,4 +77,18 @@
   width: 80%;
   font-size: 14px;
   text-align: justify;
+}
+
+.noCmt {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  height: 300px;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
 }
