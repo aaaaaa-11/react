@@ -79,3 +79,13 @@ foo (参数, e) {
 
 通过return null来阻止组件渲染，组件的生命周期依然完整
 
+## 列表 & Key
+JavaScript中使用map()方法遍历数组
+每一个遍历的item需要绑定一个Key值，Key用于React识别哪些元素改变了
+
+## 状态提升
+数据共享（多个组件数据同步）
+多个input的value数据源来自于其共同父组件的state中的状态
+通过onChange改变input数据时，将改变后的数据传递给父组件，父祖家更新state
+
+

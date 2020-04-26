@@ -11,12 +11,12 @@ export default class CmtItem extends Component {
     return (
       <div className="cmts-item">
         <div className="cmts-item-l">
-          <img className="cmts-item_avat" src={ this.props.user.avatar || require("../../img/logo192.png")} alt="avatar" />
+          <img className="cmts-item_avat" src={ this.props.avatar || require("../../img/logo192.png")} alt="avatar" />
           <p className="cmts-item_name">{ this.props.user }</p>
         </div>
         <div className="cmts-item-r">
-          <p className="cmts-item_time">{item.cmtTime}</p>
-          <p className="cmts-item_p">{ item.comment }</p>
+          <p className="cmts-item_time">{this.props.cmtTime}</p>
+          <p className="cmts-item_p">{ this.props.comment }</p>
         </div>
       </div>
     )

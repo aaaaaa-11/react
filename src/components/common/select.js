@@ -18,17 +18,24 @@ export default class Select extends Component {
           onChange={ this.changeSelect }
           // name={this.state.selectOption }
         >
-          { this.props.list.map((item, i) => <option value={item.value}>{item.cnValue}</option>) }
+          { this.props.list.map((item, i) => <option
+                value={item.value}
+                key={i}
+              >{item.cnValue}</option>)
+          }
         </select>
       )
     }
 
     changeSelect (e) {
       let target = e.target
-      this.setState({
+      let t = this
+      t.setState({
         selectOption: target.value
       // }, function () {
       //   console.log(target.name);
+      }, function () {
+        t.props.getSelect(target.value)
       })
     }
 }

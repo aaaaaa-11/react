@@ -45,6 +45,7 @@
 .cmts-item {
   padding-top: 20px;
   display: flex;
+  margin: 10px 0;
 }
 
 .cmts-item-l {
@@ -61,14 +62,16 @@
 .cmts-item_time {
   font-size: 12px;
   text-align: right;
+  margin-bottom: 5px;
 }
 
 .cmts-item-r {
   padding: 10px 20px 15px;
   border-radius: 5px;
   border: 1px solid #ddd;
-  flex: 1;
+  flex: 1 1;
   box-sizing: border-box;
+  width: calc(100% - 100px);
 }
 .cmts-item_p {
   text-indent: 20px;
@@ -77,6 +80,7 @@
   width: 80%;
   font-size: 14px;
   text-align: justify;
+  word-wrap: break-word;
 }
 
 .noCmt {

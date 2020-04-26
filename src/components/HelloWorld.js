@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import '../css/comment.css';
 import Comment from './common/Comment';
 import { formatDetailDate } from '../js/formatDate'
+import Input from './common/Input'
+import Select from './common/select'
+import Calc from './common/Calc'
 // import NoCmt from './common/Nocomment';
 
 // function formatName (user) {
@@ -41,6 +44,14 @@ export default class HelloWorld extends Component {
     this.state = {
       cmtLists: [],
       cmtText: "把想说的写下来吧...",
+      selectItem: 'default',
+      list: [
+        { id: 0, value: "default", cnValue: "请选择" },
+        { id: 1, value: "zhangsan", cnValue: "张三" },
+        { id: 2, value: "lisi", cnValue: "李四" },
+        { id: 3, value: "wangwu", cnValue: "王五" },
+        { id: 4, value: "zhaoliu", cnValue: "赵六" }
+      ]
     }
     this.comment = this.comment.bind(this)
     this.writeCmt = this.writeCmt.bind(this)
@@ -55,6 +66,9 @@ export default class HelloWorld extends Component {
     // }
     return (
       <div>
+        <Calc />
+        <Input selectItem={this.state.selectItem} getInput={this.getInput.bind(this)} />
+        <Select list={this.state.list} getSelect={this.getSelect.bind(this)} />
         <div className="cmt-wrapper">
           <p className="cmt-tip">写下您的评论：</p>
           <textarea className="cmt-content" onMouseLeave={this.mouseLeave.bind(this, this.state.cmtText)} onMouseEnter={this.mouseEnter} onChange={this.writeCmt} placeholder={this.state.cmtText} />
@@ -72,6 +86,18 @@ export default class HelloWorld extends Component {
         </div>
       </div>
     )
+  }
+
+  getInput (val) {
+    this.setState({
+      selectItem: val
+    })
+  }
+
+  getSelect (val) {
+    this.setState({
+      selectItem: val
+    })
   }
 
   /* 实验性语法 */
