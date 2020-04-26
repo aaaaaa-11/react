@@ -4,7 +4,7 @@ class Input1 extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      inputVal: ''
+      inputVal: 0
     }
     this.changeInput = this.changeInput.bind(this)
   }
@@ -32,7 +32,7 @@ class Input2 extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      inputVal: ''
+      inputVal: 0
     }
     this.changeInput = this.changeInput.bind(this)
   }
@@ -42,7 +42,7 @@ class Input2 extends Component {
       <div>
         <input
           type="number"
-          value={ this.props.inputVal ? this.props.inputVal / 1000 : ''}
+          value={ this.props.inputVal ? this.props.inputVal / 1000 : 0}
           onChange={ this.changeInput }
         />千米
       </div>

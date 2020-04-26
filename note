@@ -88,4 +88,8 @@ JavaScript中使用map()方法遍历数组
 多个input的value数据源来自于其共同父组件的state中的状态
 通过onChange改变input数据时，将改变后的数据传递给父组件，父祖家更新state
 
+## 组合 & 继承
+导入组件时，如果是双标签导入，可以在组件标签中添加内容
+该内容在组件中可以通过prop.children获取并使用
+
 
