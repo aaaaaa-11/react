@@ -11,7 +11,7 @@ export default class Parent extends Component {
     return (
       <div>
         <h1>Parent</h1>
-        <Children />
+        <Children btn={this.props.btn} />
       </div>
     )
   }

@@ -4,9 +4,13 @@ import React from 'react';
 import './css/base.css'
 // import CodeSplit from './components/codeSplit/codeSplit';
 // import PropsChildren from './components/propsChildren/component';
-import Context from './components/context/ancestor';
+// import Context from './components/context/ancestor';
+import Page from './components/Page/Page'
 
-
+const user = {
+  permalink: 'https://www.baidu.com',
+  avatarSize: 1
+}
 function App() {
   
   return (
@@ -15,7 +19,8 @@ function App() {
       {/* <HelloWorld user={['Sara', 'Jerry', 'Ben']} /> */}
       {/* <CodeSplit /> */}
       {/* <PropsChildren /> */}
-      <Context />
+      {/* <Context /> */}
+      <Page user={user} />
     </div>
   );
 }

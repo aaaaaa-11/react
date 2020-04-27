@@ -13,6 +13,7 @@ export default class Children extends Component {
   render () {
     return (
       <div>
+        {this.props.btn}
         <h1>Children</h1>
         <Button theme={this.context} />
       </div>

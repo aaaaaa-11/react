@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Parent from './parent'
+import Button from './Button'
 
+const btn = <Button theme={'button-----'} />
 const ThemeContext = React.createContext('light')
 export default class Context extends Component {
   constructor (props) {
@@ -15,8 +17,11 @@ export default class Context extends Component {
         <div>
           <p>hhh</p>
           <ThemeContext.Provider value="dark">
-              <Parent />
-            </ThemeContext.Provider>
+            <Parent />
+          </ThemeContext.Provider>
+        </div>
+        <div>
+          <Parent btn={btn} />
         </div>
       </div>
     )
