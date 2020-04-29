@@ -86,11 +86,116 @@ JavaScript中使用map()方法遍历数组
 ## 状态提升
 数据共享（多个组件数据同步）
 多个input的value数据源来自于其共同父组件的state中的状态
-通过onChange改变input数据时，将改变后的数据传递给父组件，父祖家更新state
+通过onChange改变input数据时，将改变后的数据传递给父组件，父组件更新state
 
 ## 组合 & 继承
 导入组件时，如果是双标签导入，可以在组件标签中添加内容
 该内容在组件中可以通过prop.children获取并使用
 
-## context
-多层级组件需要访问同一数据
+## 不同层级组件间传递数据
+1. 通过props层层传递
+2. 顶部组件要传递数据给底部组件，可以在顶部组件中将底部组件作为自定义组件，
+在底部组件中写好接收数据的逻辑，然后将自定义组件作为参数传递给顶部组件和底部组件之间的中间组件
+这样，顶部组件知道底部组件怎么使用数据，而中间组件不知道，类似于slots
+function Ancestor (props) {
+  const data = props.data
+  const 自定义组件 = (
+    <Child data={data}>
+      /* Child的内容{使用data} */
+    </Child>
+  )
+
+  return (
+    <div>
+      <Parent child={自定义组件} />
+      /* 其他内容 */
+    </div>
+  )
+}
+
+function Parent (props) {
+  return (
+    <div>
+      {props.child} /* <Child /> */
+    </div>
+  )
+}
+
+function Child (props) {
+  return (
+    <div>{/* 使用props.data */}</div>
+  )
+}
+3. context
+
+## Context
+- React.createContext
+const MyContext = React.createContext(defaultVal)
+创建一个Context对象，并且给一个默认值，当订阅了这个Context对象的组件
+没有从离自身最近的匹配了Provider的组件树中读取到当前的context值，就会使用默认值
+
+如果传递的defaultVal为undefined，则不生效
+
+- Context.Provider
+<MyContext.Provider value={/*值*/>} />
+Context对象会返回一个 Provider React组件
+value属性改变时，能够传递给消费组件，以此通知消费组件context的变化，然后重新渲染
+这些更新不受shouldComponentUpdate影响
+
+检测新旧值和Object.is()具有相同算法
+
+- Class.contextType
+  1）单一订阅context
+class MyClass extends React.Component {
+  /* 可以在生命周期函数中通过this.context使用 */
+}
+MyClass.contextType = MyContext
+将contextType挂在到class上，并把创建的context对象赋值给它，
+在class中可以使用this.context来使用最近的Context上的值
+  2）使用多个context
+<Context1.Provider>
+  <Context2.Provider>
+    <Child />
+  </Context2.Provider>
+</Context1.Provider>
+
+- Context.Consumer
+<MyContext.Consumer>
+  {value => /* 基于context值进行渲染 */}
+</MyContext.Consumer>
+将函数组件作为子元素
+value等同于最近的Provider的value，如果没有Provider，等同于defaultVal
+
+- Context.displatName
+值为字符串，React DevTools使用该字符串确定context要显示的内容
+
+使用：
+假设 <Outer /> 组件内有子孙组件<Child />需要使用context对象数据
+// 在 Outer 中导入Context文件，并用一个对象接收
+import ContextObj from 'xxx/context.js'
+
+// 将需要使用context对象的组件用Context.Provider作为标签包裹
+// 并添加value属性，用来告知子孙组件context的变化
+<ContextObj.Provider value={子孙组件需要的context数据}>
+  <MiddleComponent>
+    <Child />
+  </MiddleComponent>
+  <Child />
+</ContextObj.Provider>
+
+// 子孙组件
+import ContextObj from 'xxx/context.js' // 需要先导入context对象
+
+// 想要使用context对象的数据，需要添加contextType属性，
+// 然后在组件生命周期函数中使用this.context接收contextObj对象
+class Child extends React.Component {
+  render () {
+    let ctx = this.context
+    return (
+      <div>{ctx}</div> /* 使用context对象中的数据 */
+    )
+  }
+}
+Child.contextType = contextObj
+export defaul Child // 需要先把contextType挂载到Child上，然后再暴露出去
+

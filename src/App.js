@@ -5,12 +5,15 @@ import './css/base.css'
 // import CodeSplit from './components/codeSplit/codeSplit';
 // import PropsChildren from './components/propsChildren/component';
 // import Context from './components/context/ancestor';
-import Page from './components/Page/Page'
+// import Page from './components/Page/Page'
+// import Page from './components/dynamicContext/Page'
+// import DynamicContext from './components/dynamicContext/dynamicContext'
+import Contexts from './components/dynamicContext/contexts';
 
-const user = {
-  permalink: 'https://www.baidu.com',
-  avatarSize: 1
-}
+// const user = {
+//   permalink: 'https://www.baidu.com',
+//   avatarSize: 1
+// }
 function App() {
   
   return (
@@ -20,7 +23,9 @@ function App() {
       {/* <CodeSplit /> */}
       {/* <PropsChildren /> */}
       {/* <Context /> */}
-      <Page user={user} />
+      {/* <Page user={user} /> */}
+      {/* <DynamicContext /> */}
+      <Contexts />
     </div>
   );
 }
