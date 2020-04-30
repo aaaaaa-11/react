@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { CityList } from './city-context'
-import { themes } from './theme-context'
+// import { CityList } from './city-context'
+// import { themes } from './theme-context'
 
 export default class Child extends Component {
   render () {

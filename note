@@ -199,3 +199,49 @@ class Child extends React.Component {
 Child.contextType = contextObj
 export defaul Child // 需要先把contextType挂载到Child上，然后再暴露出去
 
+## 错误边界
+React组件，捕获并打印发生在其子组件树任何位置的JavaScript错误，
+并且可以渲染出备用UI
+在渲染期间、生命周期函数和整个组件树的构造函数中捕获错误
+
+无法捕获的错误
+事件处理
+异步代码
+服务端渲染
+自身跑出来的错误
+
+使用：
+在class组件中定义一下两个生命周期函数中的任意一个或两个
+static getDerivedStateFromError() // 渲染配用UI
+componentDidCatch() // 打印错误日志
+
+<ErrorBoundary>
+  <Child /> // 被 错误边界 处理的组件
+</ErrorBoundary>
+
+class ErrorBoundary extends React.Component {
+  static getDerivedStateFromError(err) {
+    return xxx
+  }
+
+  componentDidCatch (err, errInfo) {
+    // 发生错误时的处理
+    this.setState({ err: err.toString() })
+  }
+
+  render () {
+    return (
+      // 希望捕获到错误时显示的内容
+    )
+  }
+}
+
+## try / catch
+事件处理器
+仅用于命令式代码
+try {
+  // 代码
+} catch (err) {
+  // 代码出错，捕获
+}
+
