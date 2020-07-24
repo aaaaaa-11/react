@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style-type: none;
+}
+
+.bgRed {
+  background-color: red;
+}
+.bgGray {
+  background-color: gray;
+}
